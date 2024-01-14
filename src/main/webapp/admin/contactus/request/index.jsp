@@ -12,7 +12,7 @@
 </head>
 <body>
 	<header class="head">
-		<div class="heading">Welcome to Mountblue</div>
+		<div class="heading">Welcome to Shiv Technology</div>
 		<div class="link">
 			<form action="/contactForm/Logout" method="post">
 				<input type="submit" value="logout">

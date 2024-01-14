@@ -8,16 +8,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class MessageDao {
-	String url="jdbc:postgresql://localhost:5432/ContactUs";
-	String user="postgres";
-	String postgresPassword="8055";
+	String url = "jdbc:mysql://localhost:3306/contactUs";
+	String user = "root";
+	String mysqlPassword = "8055";
 	
 
 	public void insert(String name, String email, String message, boolean active) throws Exception {
-        Class.forName("org.postgresql.Driver");
+        Class.forName("com.mysql.cj.jdbc.Driver");
 		
 		String query="INSERT INTO messageinfo (name, email, message,active) VALUES (?, ?, ?, true)";
-		Connection connection=DriverManager.getConnection(url,user,postgresPassword);
+		Connection connection=DriverManager.getConnection(url,user,mysqlPassword);
 		PreparedStatement statement=connection.prepareStatement(query);
 		
 		statement.setString(1,name);
@@ -28,10 +28,10 @@ public class MessageDao {
 	}
 	
 	public boolean check(String email, String pass) throws Exception {
-		Class.forName("org.postgresql.Driver");
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		
 		String query="Select * from adminlogin where email=? and password=?;";
-		Connection connection=DriverManager.getConnection(url,user,postgresPassword);
+		Connection connection=DriverManager.getConnection(url,user,mysqlPassword);
 		PreparedStatement statement=connection.prepareStatement(query);
 		
 		statement.setString(1, email);
@@ -47,10 +47,10 @@ public class MessageDao {
 	}
 	
 	public ResultSet getMessangerData() throws Exception {
-		Class.forName("org.postgresql.Driver");
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		
 		String query="Select * from messageinfo";
-		Connection connection=DriverManager.getConnection(url,user,postgresPassword);
+		Connection connection=DriverManager.getConnection(url,user,mysqlPassword);
 		Statement statement=connection.createStatement();
 		
 		ResultSet resultSet=statement.executeQuery(query);
@@ -59,10 +59,10 @@ public class MessageDao {
 	}
 	
 	public void changeTypeOfMessage(int id) throws Exception {
-		Class.forName("org.postgresql.Driver");
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		
 		String query="Update messageinfo set active=not active where id=?";
-		Connection connection=DriverManager.getConnection(url,user,postgresPassword);
+		Connection connection=DriverManager.getConnection(url,user,mysqlPassword);
 		PreparedStatement preparedStatement=connection.prepareStatement(query);
 		
 		preparedStatement.setInt(1, id);
